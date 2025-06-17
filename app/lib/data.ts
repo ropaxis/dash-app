@@ -16,8 +16,8 @@ export async function fetchRevenue() {
     // Artificially delay a response for demo purposes.
     // Don't do this in production :)
 
-    // console.log('Fetching revenue data...');
-    // await new Promise((resolve) => setTimeout(resolve, 3000));
+    console.log('Fetching revenue data...');
+    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     const data = await sql<Revenue[]>`SELECT * FROM revenue`;
 
@@ -31,6 +31,8 @@ export async function fetchRevenue() {
 }
 
 export async function fetchLatestInvoices() {
+
+  
   try {
     const data = await sql<LatestInvoiceRaw[]>`
       SELECT invoices.amount, customers.name, customers.image_url, customers.email, invoices.id
@@ -122,6 +124,9 @@ export async function fetchFilteredInvoices(
 }
 
 export async function fetchInvoicesPages(query: string) {
+  console.log(
+    '🚀 ~ file: data.ts ~ line 78 ~ fetchInvoicesPages ~ fetchInvoicesPages',);
+  
   try {
     const data = await sql`SELECT COUNT(*)
     FROM invoices
